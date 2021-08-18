@@ -1,0 +1,107 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block body %}
+<body itemscope="" itemtype="http://schema.org/WebPage" class="templateCustomersRegister notouch">
+{% endblock body %}
+
+{% block content %}
+
+			<!-- Content -->
+			<div id="content" class="clearfix">
+				<div id="breadcrumb" class="breadcrumb">
+					<div itemprop="breadcrumb" class="container">
+						<div class="row">
+							<div class="col-md-24">
+								<a href="{%url 'index'%}" class="homepage-link" title="Back to the frontpage">Home</a>
+								<span>/</span>
+								<span class="page-title">Create Account</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="content">
+					<div class="container">
+						<div class="row">
+							<div id="page-header" class="col-md-24">
+								<h1 id="page-title">Register</h1>
+							</div>
+								{% for field in form %}
+									{% for error in field.errors %}
+										<div class="col-md-21 login-alert">
+											<div class="alert alert-danger">
+												<button type="button" class="close btooltip" data-toggle="tooltip" data-placement="top" title="" data-dismiss="alert" data-original-title="Close">×</button>
+												<div class="errors">
+													<ul>
+														<li> {{ error }}</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+									{% endfor %}
+								{% endfor %}
+
+							<div id="col-main" class="col-md-24 register-page clearfix">
+								<form method="post" action="" id="" accept-charset="UTF-8">
+									{% csrf_token %}
+									<ul id="register-form" class="row list-unstyled">
+
+										<li id="first_namef">
+										<label class="control-label" for="id_first_name">First Name</label>
+										<input name="first_name" id="id_first_name" class="form-control" type="text">
+										</li>
+										<li class="clearfix"></li>
+										<li id="last_namef">
+										<label class="control-label" for="id_last_name">Last Name</label>
+										<input name="last_name" id="id_last_name" class="form-control " type="text">
+										</li>
+										<li class="clearfix"></li>
+										<li id="emailf" class="">
+										<label class="control-label" for="id_email">Your Email <span class="req">*</span></label>
+										<input name="email" id="id_email" required class="form-control " type="email">
+										</li>
+										<li class="clearfix"></li>
+										<li id="username">
+										<label class="control-label" for="id_username">User Name<span class="req">*</span></label>
+										<input name="username" id="id_username" required class="form-control" type="text">
+										</li>
+										<li class="clearfix"></li>
+										<li id="address">
+										<label class="control-label" for="id_address">Address<span class="req">*</span></label>
+											<textarea name="address" required id="id_address" class="form-control"></textarea>
+										</li>
+										<li class="clearfix"></li>
+										<li id="zip">
+										<label class="control-label" for="id_zip">Zip<span class="req">*</span></label>
+										<input name="zip" required id="id_zip" class="form-control " type="number">
+										</li>
+										<li class="clearfix"></li>
+										<li id="phone">
+										<label class="control-label" for="id_phone">Phone</label>
+										<input name="phone" id="id_phone" class="form-control" type="number">
+										</li>
+										<li class="clearfix"></li>
+										<li id="passwordf" class="">
+										<label class="control-label" for="id_password1">Your Password <span class="req">*</span></label>
+										<input value="" name="password1" id="id_password1" required class="form-control password" type="password">
+										</li>
+										<li class="clearfix"></li>
+										<li id="password" class="">
+										<label class="control-label" for="id_password2">Confirm Password <span class="req">*</span></label>
+										<input value="" name="password2" id="id_password2" required class="form-control password" type="password">
+										</li>
+										<li class="clearfix"></li>
+										<li class="unpadding-top action-last">
+										<button class="btn" type="submit">Create an Account</button>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+
+{% endblock content %}
