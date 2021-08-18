@@ -129,12 +129,22 @@
 												<i class="fa fa-user"></i>
 											</div>
 											<ul class="customer dropdown-menu">
+										{% if user.is_authenticated %}
 												<li class="logout">
-												<a href="#">Login</a>
+												<a href="{%url 'account'%}">My Account</a>
+												</li>
+												<li class="logout">
+												<a href="{%url 'logout'%}">Logout</a>
+												</li>
+										{% else %}
+												<li class="logout">
+												<a href="{%url 'signin'%}">Login</a>
 												</li>
 												<li class="account last">
-												<a href="register.html">Register</a>
+												<a href="{%url 'signup'%}">Create an account</a>
 												</li>
+										{% endif %}
+
 											</ul>
 										</div>
 										</li>
