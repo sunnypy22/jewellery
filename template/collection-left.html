@@ -1,0 +1,260 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block body %}
+<body itemscope="" itemtype="http://schema.org/WebPage" class="templateCollection notouch">
+{% endblock body %}
+
+{% block content %}
+
+			<!-- Content -->
+			<div id="content" class="clearfix">                
+				<div id="breadcrumb" class="breadcrumb">
+					<div itemprop="breadcrumb" class="container">
+						<div class="row">
+							<div class="col-md-24">
+								<a href="{%url 'index'%}" class="homepage-link" title="Back to the frontpage">Home</a>
+								<span>/</span>
+								<span class="page-title">{{category}} Collection
+                                </span>
+							</div>
+						</div>
+					</div>
+				</div>
+                
+				<section class="content">
+					<div class="container">
+						<div class="row"> 
+							<div id="collection-content">
+								<div id="page-header">
+									<h1 id="page-title">Collection Left Sidebar</h1>
+								</div>
+								<div class="collection-warper col-sm-24 clearfix"> 
+									<div class="collection-panner">
+										<img src="{%static 'images/collection_banner.jpg'%}" class="img-responsive" alt="">
+									</div>
+								</div>
+								<div class="collection-main-content">
+									<div id="prodcoll" class="col-sm-6 col-md-6 sidebar hidden-xs">
+										<div class="group_sidebar">
+											<div class="sb-wrapper">
+												<!-- filter tags group -->
+												<div class="filter-tag-group">
+													<h6 class="sb-title">Filter</h6>
+													<!-- tags groupd 2 -->
+													<div class="tag-group" id="coll-filter-2">
+														<h6 class="sb-title">
+															Color
+														</h6>
+														<ul>
+															{% for color in color %}
+															<li class="swatch-tag">
+																<span style="background: {{color.0}}; " class="btooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{color.0}}">
+																	<a title="Narrow selection to products matching tag {{color.0}}" href="#"></a>
+																</span>
+															</li>
+															{% endfor %}
+														</ul>
+													</div>
+
+													<!-- tags groupd 3 -->
+
+												</div>
+											</div>  
+											<div class="home-collection-wrapper sb-wrapper clearfix">
+												<h6 class="sb-title">Gender</h6>
+												<ul class="list-unstyled sb-content list-styled">
+													{% for gender in gender %}
+													<li>
+													<a href="">
+														<span>
+															<i class="fa fa-circle"></i> {{gender.0}}</span>
+													</a>
+													</li>
+													{% endfor %}
+												</ul>
+											</div>  
+											<div class="home-collection-wrapper sb-wrapper clearfix">
+												<h6 class="sb-title">Metal</h6>
+												<ul class="list-unstyled sb-content list-styled">
+													{% for metal in metal %}
+													<li>
+													<a href="">
+														<span>
+															<i class="fa fa-circle"></i> {{metal.0}}</span>
+													</a>
+													</li>
+													{% endfor %}
+												</ul>
+											</div>
+											<div class="home-collection-wrapper sb-wrapper clearfix">
+												<h6 class="sb-title">Occasion</h6>
+												<ul class="list-unstyled sb-content list-styled">
+													{% for occasion in occasion %}
+													<li>
+													<a href="">
+														<span>
+															<i class="fa fa-circle"></i> {{occasion.0}}</span>
+													</a>
+													</li>
+													{% endfor %}
+												</ul>
+											</div>
+											<div class="home-collection-wrapper sb-wrapper clearfix">
+												<h6 class="sb-title">Product Categories</h6>
+												<ul class="list-unstyled sb-content list-styled">
+													{% for cat in cat %}
+													<li>
+													<a href="{%url 'products' cat.id%}"><span>
+														<i class="fa fa-circle"></i> {{cat.cat_name}}</span>
+														<span class="collection-count"> (12)</span>
+													</a>
+													</li>
+													{% endfor %}
+												</ul>
+											</div>
+											<div class="sb-wrapper">
+												<h6 class="sb-title">Welcome</h6>
+												<ul class="list-unstyled sb-content textwidget list-styled">
+													<li>
+													<p>
+														Porro quisquam est, qui dolorem ipsum sitet dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora labore et dolore eut aliquam quaerat
+													</p>
+													</li>
+												</ul>
+											</div>  
+											<div class="sb-wrapper left-sample-block">
+												<h6 class="sb-title">Product Vendors</h6>
+												<ul class="list-unstyled sb-content list-styled">
+													<li>
+													<i class="fa fa-circle"></i><a href="#" title="Vendor 1">Vendor 1</a>
+													</li>
+													<li>
+													<i class="fa fa-circle"></i><a href="#" title="Vendor 2">Vendor 2</a>
+													</li>
+													<li>
+													<i class="fa fa-circle"></i><a href="#" title="Vendor 3">Vendor 3</a>
+													</li>
+													<li>
+													<i class="fa fa-circle"></i><a href="#" title="Vendor 4">Vendor 4</a>
+													</li>
+												</ul>
+											</div>  
+											<!--End sb-item-->
+										</div><!--end group_sidebar-->
+									</div>
+									<div id="col-main" class="collection collection-page col-sm-18 col-md-18 no_full_width have-left-slidebar">
+										<div class="container-nav clearfix">
+											<div id="options" class="container-nav clearfix">
+												<ul class="list-inline text-right">
+													<li class="sortBy">
+													<div id="sortButtonWarper" class="dropdown-toggle" data-toggle="dropdown">
+														<strong class="title-6">View as</strong>
+														<button id="sortButton">
+														<span class="name">Featured</span><i class="fa fa-caret-down"></i>
+														</button>
+														<i class="sub-dropdown1"></i>
+														<i class="sub-dropdown"></i>
+													</div>
+													<div id="sortBox" class="control-container dropdown-menu">
+														<ul id="sortForm" class="list-unstyled option-set text-left list-styled" data-option-key="sortBy">
+															<li class="sort" data-option-value="manual">Featured</li>
+															<li class="sort" data-option-value="price-ascending" data-order="asc">
+																<a href="?order_by=High-To-Low">Price: High to Low</a>
+															</li>
+															<li class="sort" data-option-value="price-descending" data-order="desc">
+																<a href="?order_by=Low-To-High">Price: Low to High</a>
+
+															</li>
+															<li class="sort" data-option-value="title-ascending" data-order="asc">
+																	<a href="?order_by=A-Z">A-Z</a>
+															</li>
+															<li class="sort" data-option-value="title-descending" data-order="desc">
+															<a href="?order_by=Z-A">Z-A</a>
+															</li>
+															<li class="sort" data-option-value="created-ascending" data-order="asc">
+																<a href="?order_by=Oldest_to_Newest">Oldest to Newest</a>
+
+
+															</li>
+															<li class="sort" data-option-value="created-descending" data-order="desc">
+																<a href="?order_by=Newest_to_Oldest">Newest to Oldest</a>
+															</li>
+														</ul>
+													</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div id="sandBox-wrapper" class="group-product-item row collection-full">
+											<ul id="sandBox" class="list-unstyled">
+												{% for pro in pro %}
+												<li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="25900">
+													<ul class="row-container list-unstyled clearfix">
+														<li class="row-left">
+														<a href="{%url 'product_view' pro.id%}" class="container_item">
+														<img src="{{pro.pro_img.url}}" class="img-responsive" alt="Curabitur cursus dignis">
+														{% if pro.offer == 0.00 %}
+														{% else %}
+															<span class="sale_banner">
+														<span class="sale_text">Sale</span>
+														</span>
+														{% endif %}
+
+														</a>
+														<div class="hbw">
+															<span class="hoverBorderWrapper"></span>
+														</div>
+														</li>
+														<li class="row-right parent-fly animMix">
+														<div class="product-content-left">
+															<a class="title-5" href="{%url 'product_view' pro.id%}">{{pro.pro_name}}</a>
+															<span class="spr-badge" id="spr_badge_129323821155" data-rating="0.0">
+															<span class="spr-starrating spr-badge-starrating">
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+															</span>
+															<span class="spr-badge-caption">
+															No reviews </span>
+															</span>
+														</div>
+														<div class="product-content-right">
+															<div class="product-price">
+																{% if pro.offer == 0.00 %}
+																	<span class="price_sale" style="margin-left: -30px;">&#8377;{{pro.total}}</span>
+																{% else %}
+																	<span class="price_sale" style="margin-left: -30px;">&#8377;{{pro.total}}</span>
+																<del class="price_compare" style="margin-left: -30px;"> &#8377; {{pro.price}}</del>
+																{% endif %}
+															</div>
+														</div>
+														<div class="list-mode-description">
+															 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+														</div>
+														<div class="hover-appear">
+															<form action="#" method="post">
+																<div class="effect-ajax-cart">
+																	<input name="quantity" value="1" type="hidden">
+																	<button class="select-option" type="button" onclick="window.location.href='{%url 'product_view' pro.id%}'"><i class="fa fa-th-list" title="Select Options"></i><span class="list-mode">Select Option</span></button>
+																</div>
+															</form>
+
+															<a class="wish-list" href="account.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+														</div>
+														</li>
+													</ul>
+												</li>
+												{% endfor %}
+											</ul>
+										</div>
+									</div>  
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>        
+      </div>
+{% endblock content %}
