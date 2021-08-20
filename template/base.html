@@ -152,7 +152,7 @@
 										<a href="{%url 'wishlist'%}"><i class="fa fa-heart"></i></a>
 										</li>
 										<li class="is-mobile-cart">
-										<a href="#"><i class="fa fa-shopping-cart"></i></a>
+										<a href="{%url 'cart'%}"><i class="fa fa-shopping-cart"></i></a>
 										</li>
 									</ul>
 								</div>
@@ -217,43 +217,17 @@
 					<li class="umbrella hidden-xs">
 						<div id="umbrella" class="list-inline unmargin">
 							<div class="cart-link">
-								<a href="cart.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
+								<a href="{%url 'cart'%}" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
 									<i class="sub-dropdown1"></i>
 									<i class="sub-dropdown"></i>
 									<div class="num-items-in-cart">
 										<span class="icon">
 										  Cart
-										  <span class="number">1</span>
+										  <span class="number"></span>
 										</span>
 									</div>
 								</a>
-								<div id="cart-info" class="dropdown-menu" style="display: none;">
-									<div id="cart-content">
-										<div class="items control-container">
-											<div class="row items-wrapper">
-												<a class="cart-close" title="Remove" href="javascript:void(0);"><i class="fa fa-times"></i></a>
-												<div class="col-md-8 cart-left">
-													<a class="cart-image" href="product.html">
-														<img src="{%static 'images/1_grande.jpg'%}" alt="" title=""></a>
-												</div>
-												<div class="col-md-16 cart-right">
-													<div class="cart-title">
-														<a href="product.html">Product with left sidebar - black / small</a>
-													</div>
-													<div class="cart-price">
-														$200.00<span class="x"> x </span>1
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="subtotal">
-											<span>Subtotal:</span><span class="cart-total-right">$200.00</span>
-										</div>
-										<div class="action">
-											<button class="btn" onclick="window.location='cart.html'">CHECKOUT</button><a class="btn btn-1" href="cart.html">View Cart</a>
-										</div>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</li>
@@ -594,4 +568,27 @@
 	  ga('send', 'pageview');
 
 	</script>
+<script>
+	$(".color_to_cart").click(function(){
+		var x = $(this).attr('data-value');
+		$("#cart_color_item").val(x)
+		document.getElementById("append_color").style.backgroundColor = x;
+
+});
+</script>
+
+<script>
+
+	var sum = 0;
+$('.total_amount').each(function(){
+    sum += +$(this).val();
+});
+$('.subtotal_cart').append("&#8377;"+ "&nbsp;"+ sum);
+</script>
+<script>
+$(document).ready(function(){
+		var x = document.getElementById("cart_count").value
+		$('.number').append(x)
+});
+</script>
 </body>

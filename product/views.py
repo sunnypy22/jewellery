@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from .models import Product, CHOICE_METAL_COLOR, CHOICE_GENDER, CHOICE_OCCASION, CHOICE_METAL, Category, Product_Color,PostImage
-from order.models import Wishlist
+from order.models import Wishlist, Cart
 from django.contrib import messages
 # Create your views here.
 
@@ -95,6 +95,24 @@ def product_view(request, pid):
                         return redirect("wishlist")
                     else:
                         return redirect("signin")
+            elif "cart_form" in request.POST:
+                product_color = request.POST.get('cart_color_item')
+                check_cart = Cart.objects.filter(cart_user=request.user, cart_product_id=pro.id, cart_color=product_color)
+                if check_cart:
+                    data = Cart.objects.get(cart_user=request.user, cart_product_id=pro.id,cart_color=product_color)
+                    data.cart_quantity += int(request.POST.get("quantity"))
+                    data.cart_color = product_color
+                    data.save()
+                    return redirect("cart")
+                else:
+                    quantity = int(request.POST.get("quantity"))
+                    if product_color == "":
+                        messages.error(request, 'Please Choose Your Colour for Better Experience')
+                    else:
+                        data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,cart_color=product_color,
+                                cart_quantity=quantity)
+                        data.save()
+                        return redirect("cart")
         else:
             return redirect("signin")
     else:

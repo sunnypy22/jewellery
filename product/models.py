@@ -24,6 +24,7 @@ CHOICE_METAL = (
 
 CHOICE_METAL_COLOR = (
     ('yellow', 'yellow'),
+    ('red', 'red'),
 )
 
 CHOICE_GENDER = (

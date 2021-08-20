@@ -6,7 +6,7 @@
 {% endblock body %}
 
 {% block content %}
-
+<input type="text" value="{{count}}" hidden id="cart_count">
 
 			<!-- Main Slideshow -->
 			<div class="home-slider-wrapper clearfix">
@@ -139,10 +139,10 @@
 															<div class="product-content-right">
 																<div class="product-price">
 																	{% if pro.offer == 0.00 %}
-																	<span class="price_sale" style="margin-left: -30px;">&#8377;{{pro.total}}</span>
+																	<span class="price_sale" style="margin-left: -25px;font-size: 14px;">&#8377;{{pro.total}}</span>
 																{% else %}
-																	<span class="price_sale" style="margin-left: -30px;">&#8377;{{pro.total}}</span>
-																<del class="price_compare" style="margin-left: -30px;"> &#8377; {{pro.price}}</del>
+																	<span class="price_sale" style="margin-left: -25px;font-size: 14px;">&#8377;{{pro.total}}</span>
+																<del class="price_compare" style="margin-left: -30px;font-size: 14px;"> &#8377; {{pro.price}}</del>
 																{% endif %}
 																</div>
 															</div>
