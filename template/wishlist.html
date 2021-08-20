@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block body %}
+<body itemscope="" itemtype="http://schema.org/WebPage" class="templateCart notouch">
+{% endblock body %}
+
+{% block content %}
+		<!-- Content -->
+		<div id="content" class="clearfix">
+			<div id="breadcrumb" class="breadcrumb">
+				<div itemprop="breadcrumb" class="container">
+					<div class="row">
+						<div class="col-md-24">
+							<a href="{%url 'index'%}" class="homepage-link" title="Back to the frontpage">Home</a>
+							<span>/</span>
+							<span class="page-title">Wishlist Page</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<section class="content">
+				<div class="container">
+					<div class="row">
+						<div id="page-header" class="col-md-24">
+							<h1 id="page-title">Wishlist Page</h1>
+						</div>
+						<div id="col-main" class="col-md-24 clearfix">
+							<div class="page page-wishlist">
+								<div class="table-cart">
+									<div class="wrap-table">
+										<table class="cart-items haft-border">
+										<thead>
+										<tr class="top-labels">
+											<th class="text-left">
+												Items
+											</th>
+											<th>
+												Price
+											</th>
+											<th>
+												Metal
+											</th>
+											<th>
+												Remove
+											</th>
+										</tr>
+										</thead>
+										<tbody>
+										{% for data in data %}
+										<tr class="item wishlist-item">
+											<td class="title text-left">
+												<ul class="list-inline">
+													<li class="image">
+													<a class="image text-left" href="product.html">
+														<img src="{{data.wish_list_product.pro_img.url}}" alt="Donec justo condimentum" style="height: 80px;width: 80px;">
+													</a>
+													</li>
+													<li class="link">
+													<a class="title text-left" href="{%url 'product_view' data.wish_list_product.id%}">{{data.wish_list_product.pro_name}}</a>
+													</li>
+												</ul>
+											</td>
+											<td class="title-1">
+												&#8377;{{data.wish_list_product.total}}
+											</td>
+											<td class="title-1">
+												{{data.wish_list_product.metal}}
+											</td>
+											<td class="action">
+
+													<button type="submit"><a href="{%url 'del_wishlist' data.id%}"><i class="fa fa-times"></i></a> </button>
+											</td>
+										</tr>
+										{% endfor %}
+										</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- /#col-main -->
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+{% endblock content %}

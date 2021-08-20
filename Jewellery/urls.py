@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('product/', include('product.urls')),
     path('account/', include('account.urls')),
+    path('order/', include('order.urls')),
 ]
 
 urlpatterns += [url(r'^media/(?P<path>.*)$', serve, {

@@ -174,8 +174,8 @@ td:before{position:absolute;top:50%;left:2%;width:25%;margin-top:-10px;padding-r
 #customer_orders td:nth-of-type(5):before{content:"Toal";}
 .page-wishlist td:nth-of-type(1):before{content:"Item";}
 .page-wishlist td:nth-of-type(2):before{content:"Price";}
-.page-wishlist td:nth-of-type(3):before{content:"Remove";}
-.page-wishlist td:nth-of-type(4):before{content:"Add to cart";}
+.page-wishlist td:nth-of-type(3):before{content:"Metal";}
+.page-wishlist td:nth-of-type(4):before{content:"Remove";}
 .element ul li.row-right .product-content-right .price_compare{padding-top:0;}
 .collection-full #sandBox .element.full_width ul:hover li.row-right .hover-appear,
 .collection-full #sandBox .element.full_width ul li.row-right .hover-appear{margin-top:0;}

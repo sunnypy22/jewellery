@@ -1,8 +1,8 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from .models import Product, CHOICE_METAL_COLOR, CHOICE_GENDER, CHOICE_OCCASION, CHOICE_METAL, Category, Product_Color,PostImage
-
-
+from order.models import Wishlist
+from django.contrib import messages
 # Create your views here.
 
 def products(request, pid):
@@ -48,6 +48,25 @@ def products(request, pid):
                       {'category': category, 'pro': Newest_to_Oldest, 'color': color, 'gender': gender,
                        'occasion': occasion,
                        'metal': metal, 'cat': cat})
+    else:
+        pass
+    if request.method == "POST":
+
+        if "wishlist_form" in request.POST:
+            pro_id = request.POST.get('pro_id')
+            pro_name = request.POST.get('pro_name')
+            if Wishlist.objects.filter(wish_list_user = request.user,wish_list_product=pro_id).exists():
+                messages.warning(request, 'Product {} already exists in wishlist!'.format(pro_name))
+            else:
+                if request.user.is_authenticated:
+                    data = Wishlist.objects.create(wish_list_product_id=pro_id, wish_list_user=request.user,
+                                               wish_list_status=True)
+
+                    data.save()
+                    return redirect("wishlist")
+                else:
+                    return redirect("signin")
+
     else:
         pass
     return render(request, 'collection-left.html',

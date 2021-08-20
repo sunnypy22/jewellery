@@ -21,7 +21,20 @@
 						</div>
 					</div>
 				</div>
-                
+{% if messages %}
+    {% for message in messages %}
+    		<br><div class="col-md-21 login-alert">
+					<div class="alert alert-danger">
+						<button type="button" class="close btooltip" data-toggle="tooltip" data-placement="top" title="" data-dismiss="alert" data-original-title="Close">×</button>
+						<div class="errors">
+							<ul>
+								<li>{{message}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+    {% endfor %}
+{% endif %}
 				<section class="content">
 					<div class="container">
 						<div class="row"> 
@@ -234,6 +247,7 @@
 														<div class="list-mode-description">
 															 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
 														</div>
+
 														<div class="hover-appear">
 															<form action="#" method="post">
 																<div class="effect-ajax-cart">
@@ -241,9 +255,17 @@
 																	<button class="select-option" type="button" onclick="window.location.href='{%url 'product_view' pro.id%}'"><i class="fa fa-th-list" title="Select Options"></i><span class="list-mode">Select Option</span></button>
 																</div>
 															</form>
-
-															<a class="wish-list" href="account.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+															<form method="post">
+																{% csrf_token %}
+																<input type="text" name="pro_id" hidden value="{{pro.id}}">
+																<input type="text" name="pro_name" hidden value="{{pro.pro_name}}">
+															<button class="wish-list" name="wishlist_form"  type="submit" title="wish list">
+																<i class="fa fa-heart"></i>
+																<span class="list-mode">Add to Wishlist</span>
+															</button>
+															</form>
 														</div>
+
 														</li>
 													</ul>
 												</li>

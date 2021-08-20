@@ -6,12 +6,13 @@
 {% endblock body %}
 
 {% block content %}
-  
+
 
 			<!-- Main Slideshow -->
 			<div class="home-slider-wrapper clearfix">
 				<div class="camera_wrap" id="home-slider">
 					<div data-src="{%static 'images/slide-image-1.jpg'%}">
+
 						<div class="camera_caption camera_title_1 fadeIn">
 						  <a href="collection.html" style="color:#010101;">Live the moment</a>
 						</div>
@@ -21,8 +22,8 @@
 						<div class="camera_caption camera_image-caption_1 moveFromLeft">
 							<img src="{%static 'images/slide-image-caption-1.png'%}" alt="image_caption">
 						</div>
-
 					</div>
+
 					<div data-src="{%static 'images/slide-image-2.jpg'%}">
 						<div class="camera_caption camera_title_2 moveFromLeft">
 						  <a href="collection.html" style="color:#666666;">Love’s embrace</a>
@@ -37,7 +38,21 @@
 						</div>
 					</div>
 				</div>
-			</div> 
+			</div>
+  {% if messages %}
+    {% for message in messages %}
+    		<br><div class="col-md-21 login-alert">
+					<div class="alert alert-danger">
+						<button type="button" class="close btooltip" data-toggle="tooltip" data-placement="top" title="" data-dismiss="alert" data-original-title="Close">×</button>
+						<div class="errors">
+							<ul>
+								<li>{{message}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+    {% endfor %}
+{% endif %}
 			<!-- Content -->
 			<div id="content" class="clearfix">                       
 				<section class="content">  
@@ -142,7 +157,15 @@
 																	</div>
 																</form>
 
-																<a class="wish-list" href="account.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+																<form method="post">
+																{% csrf_token %}
+																<input type="text" name="pro_id" hidden value="{{pro.id}}">
+																<input type="text" name="pro_name" hidden value="{{pro.pro_name}}">
+															<button class="wish-list" name="wishlist_form"  type="submit" title="wish list">
+																<i class="fa fa-heart"></i>
+																<span class="list-mode">Add to Wishlist</span>
+															</button>
+															</form>
 															</div>
 															</li>
 														</ul>
@@ -310,8 +333,15 @@
 																		<button class="select-option" type="button" onclick="window.location.href='{%url 'product_view' feature.id%}'"><i class="fa fa-th-list" title="Select Options"></i><span class="list-mode">Select Option</span></button>
 																	</div>
 																</form>
-
-																<a class="wish-list" href="account.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+																<form method="post">
+																{% csrf_token %}
+																<input type="text" name="pro_id" hidden value="{{feature.id}}">
+																<input type="text" name="pro_name" hidden value="{{feature.pro_name}}">
+															<button class="wish-list" name="wishlist_form"  type="submit" title="wish list">
+																<i class="fa fa-heart"></i>
+																<span class="list-mode">Add to Wishlist</span>
+															</button>
+															</form>
 															</div>
 															</li>
 														</ul>

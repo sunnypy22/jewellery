@@ -149,7 +149,7 @@
 										</div>
 										</li>
 										<li class="is-mobile-wl">
-										<a href="#"><i class="fa fa-heart"></i></a>
+										<a href="{%url 'wishlist'%}"><i class="fa fa-heart"></i></a>
 										</li>
 										<li class="is-mobile-cart">
 										<a href="#"><i class="fa fa-shopping-cart"></i></a>
@@ -207,21 +207,13 @@
 						</nav>
 					</li>
 					<li class="top-search hidden-xs">
-						<div class="header-search">
-							<a href="#">
-							<span data-toggle="dropdown">
-							<i class="fa fa-search"></i>
-							<i class="sub-dropdown1"></i>
-							<i class="sub-dropdown"></i>
-							</span>
+						<div class="">
+							<a href="{%url 'wishlist'%}">
+							<i class="fa fa-heart-o" style="font-size:25px;"></i>
 							</a>
-							<form id="header-search" class="search-form dropdown-menu" action="http://demo.themeforshop.com/html_jewelry/search.html" method="get">
-								<input type="hidden" name="type" value="product">
-								<input type="text" name="q" value="" accesskey="4" autocomplete="off" placeholder="Search something...">
-								<button type="submit" class="btn">Search</button>
-							</form>
 						</div>
 					</li>
+
 					<li class="umbrella hidden-xs">
 						<div id="umbrella" class="list-inline unmargin">
 							<div class="cart-link">
@@ -264,13 +256,6 @@
 								</div>
 							</div>
 						</div>
-					</li>
-					<li class="mobile-search visible-xs">
-						<form id="mobile-search" class="search-form" action="http://demo.themeforshop.com/html_jewelry/search.html" method="get">
-							<input type="hidden" name="type" value="product">
-							<input type="text" class="" name="q" value="" accesskey="4" autocomplete="off" placeholder="Search something...">
-							<button type="submit" class="search-submit" title="search"><i class="fa fa-search"></i></button>
-						</form>
 					</li>
 				</ul>
 			</div>

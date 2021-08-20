@@ -14,6 +14,8 @@ class ProColor(admin.TabularInline):
 @admin.register(Product)
 class PostAdmin(admin.ModelAdmin):
     inlines = [PostImageAdmin,ProColor]
+    list_display = ['pro_cat','pro_jw_type','pro_name']
+    list_filter = ['pro_cat','pro_jw_type']
 
 
 admin.site.register(Category)
