@@ -20,7 +20,21 @@
 							</div>
 						</div>
 					</div>
-				</div>         
+				</div>
+				{% if messages %}
+    {% for message in messages %}
+    		<br><div class="col-md-21 login-alert">
+					<div class="alert alert-danger">
+						<button type="button" class="close btooltip" data-toggle="tooltip" data-placement="top" title="" data-dismiss="alert" data-original-title="Close">×</button>
+						<div class="errors">
+							<ul>
+								<li>{{message}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+    {% endfor %}
+{% endif %}
 				<section class="content">
 					<div class="container">
 						<div class="row">              
@@ -119,24 +133,6 @@
 														{% endif %}
 
 													</div>
-<!--													<div class="relative">-->
-<!--														<ul class="list-unstyled">-->
-<!--															<li class="tags">-->
-<!--															<span>Tags :</span>-->
-<!--															<a href="#">-->
-<!--															above-200<span>,</span>-->
-<!--															</a>-->
-<!--															<a href="#">-->
-<!--															black<span>,</span>-->
-<!--															</a>-->
-<!--															<a href="#">-->
-<!--															l<span>,</span>-->
-<!--															</a>-->
-<!--															<a href="#">-->
-<!--															sale-off </a>-->
-<!--															</li>-->
-<!--														</ul>-->
-<!--													</div>-->
 												</div>          
 												<div id="product-info-right">     
 													<div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="col-sm-24 group-variants">
@@ -214,10 +210,16 @@
 															</div>
 														</form>
 														<div class="wls">
-															<a class="wish-list" href="login.html"><i class="fa fa-heart"></i> Wish list</a>
-															<span>|</span>
-															<a href="mailto:info@yourdomain.com"><i class="fa fa-envelope"></i> SEND EMAIL</a>
-														</div>                                          
+															<form method="post">
+																{% csrf_token %}
+																<input type="text" name="pro_id" hidden value="{{pro.id}}">
+																<input type="text" name="pro_name" hidden value="{{pro.pro_name}}">
+															<button class="wish-list" name="wishlist_form"  type="submit" title="wish list">
+															<i class="fa fa-heart"></i>
+																Wish list
+															</button>
+															</form>
+														</div>
 													</div>                        
 													<ul id="tabs_detail" class="tabs-panel-detail hidden-xs hidden-sm">
 														<li class="first">
@@ -398,7 +400,7 @@
 																<i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>																	
 															</div>
 														</div>
-														<a class="wish-list" href="account.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+														<a class="wish-list" href="" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
 													</div>
 													</li>
 												</ul>
