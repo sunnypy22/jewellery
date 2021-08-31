@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Wishlist, Cart
+from .models import Wishlist, Cart, Checkout, Order_History
 # Register your models here.
 
 class Extra_Wish(admin.ModelAdmin):
@@ -9,3 +9,5 @@ class Extra_Wish(admin.ModelAdmin):
 
 admin.site.register(Wishlist,Extra_Wish)
 admin.site.register(Cart)
+admin.site.register(Checkout)
+admin.site.register(Order_History)

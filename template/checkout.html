@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html'%}
+{% load static %}
+
+{% block body %}
+<body itemscope="" itemtype="http://schema.org/WebPage" class="templateCart notouch">
+{% endblock body %}
+
+{% block content %}
+{% if payment %}
+
+<form action="{%url 'success'%}" method="POST">
+{% csrf_token %}
+
+<!-- RAZORPAY INTEGRATION HERE -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_l5VpO7rP3PiD3H"
+    data-amount="{{payment.amount}}"
+    data-currency="INR"
+    data-order_id="{{payment.id}}"
+    data-buttontext="Pay with Razorpay"
+    data-name="Professional Cipher"
+    data-description="Django and Data Science"
+    data-image="https://example.com/your_logo.jpg"
+    data-prefill.name="PC"
+    data-prefill.email="pc@studygyaan.com"
+    data-prefill.contact = "9999999999"
+    data-theme.color="#F37254">
+</script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+</form>
+
+
+{% else %}
+
+        <form method="post">
+            {% csrf_token %}
+            {% for pro in data %}
+            <input type="text" class="total_amount" name="ammount" value="{{pro.total_amount}}">
+            <input type="text" name="product[]" value="{{pro.cart_product.id}}">
+            <input type="text" name="ord_color[]" value="{{pro.cart_color}}">
+            <input type="text" name="ord_quantity[]" value="{{pro.cart_quantity}}">
+            <input type="text" name="billing_postcode" value="{{request.user.zip}}">
+            <input type="text" name="order_address" value="{{request.user.address}}">
+            <input type="text" name="billing_phone" value="{{request.user.phone}}">
+
+            {% endfor %}
+            <input type="text" name="subtotal_cart" class="subtotal_cart" value="">
+            <span class="subtotal_cart"></span>
+            <button type="submit">Submit</button>
+        </form>
+
+{% endif %}
+
+{% endblock content %}

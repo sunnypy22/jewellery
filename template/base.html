@@ -584,6 +584,7 @@ $('.total_amount').each(function(){
     sum += +$(this).val();
 });
 $('.subtotal_cart').append("&#8377;"+ "&nbsp;"+ sum);
+$('.subtotal_cart').val(sum);
 </script>
 <script>
 $(document).ready(function(){
