@@ -33,22 +33,138 @@
 
 {% else %}
 
-        <form method="post">
-            {% csrf_token %}
-            {% for pro in data %}
-            <input type="text" class="total_amount" name="ammount" value="{{pro.total_amount}}">
-            <input type="text" name="product[]" value="{{pro.cart_product.id}}">
-            <input type="text" name="ord_color[]" value="{{pro.cart_color}}">
-            <input type="text" name="ord_quantity[]" value="{{pro.cart_quantity}}">
-            <input type="text" name="billing_postcode" value="{{request.user.zip}}">
-            <input type="text" name="order_address" value="{{request.user.address}}">
-            <input type="text" name="billing_phone" value="{{request.user.phone}}">
+        <div id="content" class="clearfix">
+				<div id="breadcrumb" class="breadcrumb">
+					<div itemprop="breadcrumb" class="container">
+						<div class="row">
+							<div class="col-md-24">
+								<a href="{%url 'index'%}" class="homepage-link" title="Back to the frontpage">Home</a>
+								<span>/</span>
+								<a href="{%url 'cart'%}" class="homepage-link" title="Back to the frontpage">Cart</a>
+								<span>/</span>
+								<span class="page-title">CheckOut</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
+				<section class="content">
+					<div class="container">
+						<div class="row">
+							<div id="page-header" class="col-md-24">
+								<h1 id="page-title">CheckOut</h1>
+							</div>
+							<div id="col-main" class="col-md-24 cart-page content">
+								<form action="" method="post" id="cartform" class="clearfix">
+            {% csrf_token %}
+									<input type="text" class="subtotal_cart" name="subtotal_cart" hidden>
+            {% for pro in data %}
+                <input type="text" class="total_amount" name="ammount" hidden value="{{pro.total_amount}}">
+                <input type="text" name="product[]" hidden value="{{pro.cart_product.id}}">
+
+                <input type="text" name="ord_color[]" hidden value="{{pro.cart_color}}">
+                <input type="text" name="ord_quantity[]" hidden value="{{pro.cart_quantity}}">
+                <input type="text" name="billing_postcode" hidden value="{{request.user.zip}}">
+                <input type="text" name="order_address" hidden value="{{request.user.address}}">
+                <input type="text" name="billing_phone" hidden value="{{request.user.phone}}">
             {% endfor %}
-            <input type="text" name="subtotal_cart" class="subtotal_cart" value="">
-            <span class="subtotal_cart"></span>
-            <button type="submit">Submit</button>
-        </form>
+
+
+									<div class="row table-cart">
+										<div class="wrap-table">
+											<table class="cart-items haft-border">
+											<colgroup>
+											<col class="checkout-image">
+											<col class="checkout-info">
+											<col class="checkout-price">
+											<col class="checkout-quantity">
+											<col class="checkout-totals">
+											</colgroup>
+											<thead>
+											<tr class="top-labels">
+												<th>
+													Items
+												</th>
+
+												<th>
+													Price
+												</th>
+												<th>
+													Qty
+												</th>
+												<th>
+													SubTotal
+												</th>
+
+											</tr>
+											</thead>
+											<tbody>
+											{% for data in data %}
+											<tr class="item donec-condime-fermentum">
+												<td class="title text-left">
+													<ul class="list-inline">
+														<li class="image">
+														<a href="{%url 'cart'%}">
+														<img src="{{data.cart_product.pro_img.url}}" style="height: 65px;width: 65px;" alt="Donec condime fermentum">
+														</a>
+														</li>
+														<li class="link">
+														<a href="{%url 'cart'%}">
+														<span class="title-5">{{data.cart_product.pro_name}}</span>
+														</a>
+														<br>
+														<span class="variant_title">{{data.cart_product.metal}} / {{data.cart_product.brand}} / {{data.cart_color}}</span>
+														<br>
+														</li>
+													</ul>
+												</td>
+												<td class="title-1">
+													{{data.cart_product.total}}
+												</td>
+												<td>
+													<input disabled class="form-control input-1 replace" maxlength="5" size="3" id="updates_3947646083"  value="{{data.cart_quantity}}">
+												</td>
+												<td class="total title-1">
+													{{data.total_amount}}
+												</td>
+
+											</tr>
+											{% endfor %}
+											</tbody>
+											<tfoot>
+											<tr class="bottom-summary">
+												<td>
+													&nbsp;
+												</td>
+												<td>
+													&nbsp;
+												</td>
+												<td class="update-quantities">
+												</td>
+												<td class="subtotal title-1">
+													<span class="subtotal_cart"></span>
+												</td>
+												<td>
+													&nbsp;
+												</td>
+											</tr>
+											</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="clearfix">
+										<div id="checkout-proceed" class="last1 text-right">
+                                            <button id="checkout" class="btn" type="submit">CheckOut</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+
 
 {% endif %}
 

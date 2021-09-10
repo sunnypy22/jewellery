@@ -97,7 +97,7 @@
 			<div class="top-navigation">
 				<ul class="list-inline">
 					<li class="top-logo">
-						<a id="site-title" href="index-2.html" title="Jewelry - HTML Template theme">
+						<a id="site-title" href="{%url 'index'%}" title="Jewelry - HTML Template theme">
 						<img class="img-responsive" src="{%static 'images/logo.png'%}" alt="Jewelry - HTML Template theme">
 						</a>
 					</li>
@@ -196,6 +196,21 @@
 											<li class=""><a tabindex="-1" href="blog-left.html">Blog - left sidebar</a></li>
 										</ul>
 										</li>
+										<li class="nav-item dropdown">
+										<a href="blog-full.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
+										<span>Choices</span>
+										<i class="fa fa-caret-down"></i>
+										<i class="sub-dropdown1 visible-sm visible-md visible-lg"></i>
+										<i class="sub-dropdown visible-sm visible-md visible-lg"></i>
+										</a>
+										<ul class="dropdown-menu">
+											{% for cat in cat %}
+											<li class="">
+												<a tabindex="-1" href="{%url 'products' cat.id%}?cat_id={{cat.id}}">{{cat.cat_name}}</a>
+											</li>
+											{% endfor %}
+										</ul>
+										</li>
 										<li class="nav-item">
 										<a href="contact.html">
 										<span>Contact</span>
@@ -210,6 +225,14 @@
 						<div class="">
 							<a href="{%url 'wishlist'%}">
 							<i class="fa fa-heart-o" style="font-size:25px;"></i>
+
+
+											{% if request.user.is_authenticated %}
+										  <span>{{check_wish}}</span>
+											{% else %}
+											<span class="">0</span>
+											{% endif %}
+
 							</a>
 						</div>
 					</li>
@@ -223,7 +246,11 @@
 									<div class="num-items-in-cart">
 										<span class="icon">
 										  Cart
-										  <span class="number"></span>
+											{% if request.user.is_authenticated %}
+										  <span class="">{{check_cart}}</span>
+											{% else %}
+											<span class="">0</span>
+											{% endif %}
 										</span>
 									</div>
 								</a>
@@ -592,4 +619,7 @@ $(document).ready(function(){
 		$('.number').append(x)
 });
 </script>
+
+
+
 </body>

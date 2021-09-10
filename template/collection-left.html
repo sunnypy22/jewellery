@@ -118,9 +118,9 @@
 												<ul class="list-unstyled sb-content list-styled">
 													{% for cat in cat %}
 													<li>
-													<a href="{%url 'products' cat.id%}"><span>
+													<a href="{%url 'products' cat.id%}?cat_id={{cat.id}}"><span>
 														<i class="fa fa-circle"></i> {{cat.cat_name}}</span>
-														<span class="collection-count"> (12)</span>
+														<span class="collection-count"> </span>
 													</a>
 													</li>
 													{% endfor %}
